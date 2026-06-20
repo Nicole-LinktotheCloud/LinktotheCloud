@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import Container from '../../components/Container.astro';
+import Card from '../../components/Card.astro';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Projects — Nicole Inman"
+  description="Automation and AI case studies: Power Platform AP automation, Azure Synapse monitoring, open-source autonomous agent POC, and more."
+>
+  <Section>
+    <Container>
+      <h1 class="page-heading">Projects</h1>
+      <p class="page-sub">
+        Case studies from client and open-source work. Each project is described in terms of
+        what was built, what it replaced, and what it runs on.
+      </p>
+      <ul class="project-grid" aria-label="Project case studies">
+        {projects.map(project => (
+          <li>
+            <Card
+              href={`/projects/${project.id}`}
+              title={project.data.title}
+              summary={project.data.summary}
+              tags={project.data.tags}
+            />
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .page-heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    margin: 0 0 var(--space-4);
+  }
+
+  .page-sub {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0 0 var(--space-12);
+    max-width: 600px;
+  }
+
+  .project-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .project-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

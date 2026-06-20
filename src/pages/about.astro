@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout
+  title="About — Nicole Inman"
+  description="AI automation specialist and cloud automation architect. UW MSIM (AI & Data Science), Power Platform and Azure background, expanding into open-source autonomous agent systems."
+>
+  <!-- Intro -->
+  <Section>
+    <Container variant="prose">
+      <h1 class="page-heading">About</h1>
+      <p class="lead">
+        I'm an AI automation specialist and cloud automation architect. I design and deploy automation
+        systems for business operations — from AI-powered document processing to autonomous agent
+        pipelines — across Microsoft and open-source stacks.
+      </p>
+      <p>
+        Currently in my third quarter of the UW Master of Science in Information Management program,
+        AI &amp; Data Science focus. Previously built automation systems across Power Platform and Azure
+        for clients ranging from construction contractors to event organizations. Now expanding into
+        open-source, self-hostable architectures built to give clients ownership over their own infrastructure.
+      </p>
+    </Container>
+  </Section>
+
+  <!-- Background -->
+  <Section variant="surface">
+    <Container variant="prose">
+      <h2 class="section-heading">Background</h2>
+
+      <div class="edu-block">
+        <h3>University of Washington</h3>
+        <p class="edu-detail">MS in Information Management — AI &amp; Data Science focus</p>
+        <p class="edu-meta">2026–2028 · In progress</p>
+      </div>
+
+      <div class="edu-block">
+        <h3>Bellevue College</h3>
+        <p class="edu-detail">BAS in Computer &amp; Information Systems (Application/Software Development)</p>
+        <p class="edu-meta">2017–2022</p>
+      </div>
+
+      <div class="edu-block">
+        <h3>Freelance track record</h3>
+        <p>100% Job Success on Upwork · 5.0 rating across all rated engagements · $30K+ delivered ·
+        585 hours · 8 jobs completed. Work spans Power Platform, Azure, Power BI, Microsoft 365,
+        and custom connectors.</p>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- How I work -->
+  <Section>
+    <Container variant="prose">
+      <h2 class="section-heading">How I work</h2>
+      <ul class="approach-list">
+        <li>
+          <strong>Source control and CI/CD for every solution.</strong>
+          Every automation system I build is version-controlled and deployed through a pipeline —
+          Azure DevOps for Microsoft stacks, containerized tooling for open-source. This isn't optional;
+          it's how production software works.
+        </li>
+        <li>
+          <strong>Built for the client's actual workflows, not forced into off-the-shelf patterns.</strong>
+          Custom connectors, data modeling from the entity up, API integrations where they're needed.
+          Not adapted from a template that was almost-right.
+        </li>
+        <li>
+          <strong>Open-source where it gives the client ownership; Microsoft where it's the right tool.</strong>
+          Power Platform is effective for the right problems. So is a Dockerized stack the client
+          can operate independently. The choice depends on what the client needs to own.
+        </li>
+        <li>
+          <strong>Architect, not button-clicker.</strong>
+          Data modeling, custom connectors, API integrations, ALM pipelines, autonomous agent design.
+          Not a prebuilt template shop.
+        </li>
+      </ul>
+    </Container>
+  </Section>
+
+  <!-- Current focus -->
+  <Section variant="surface">
+    <Container variant="prose">
+      <h2 class="section-heading">Current focus</h2>
+      <ul class="focus-list">
+        <li>
+          <strong>Autonomous AI agents for business operations</strong> — OpenClaw + Twenty CRM + n8n
+          as a reference stack for document processing, CRM writes, and self-correcting workflows.
+        </li>
+        <li>
+          <strong>AI document intelligence</strong> — ML-based extraction (not just OCR) against
+          real-world document formats: invoices, purchase orders, receipts, and custom types.
+        </li>
+        <li>
+          <strong>Open-source alternatives to vendor-locked enterprise tools</strong> — proving that
+          the core business automation workflows are achievable on infrastructure the client controls.
+        </li>
+      </ul>
+      <div class="about-cta">
+        <Button href="/projects">View Projects</Button>
+        <Button href="/contact" variant="secondary">Get in Touch</Button>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .page-heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    margin: 0 0 var(--space-8);
+  }
+
+  .lead {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    margin: 0 0 var(--space-6);
+  }
+
+  p { line-height: var(--leading-relaxed); margin: 0 0 var(--space-6); }
+  p:last-child { margin-bottom: 0; }
+
+  .section-heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin: 0 0 var(--space-8);
+  }
+
+  .edu-block {
+    padding-bottom: var(--space-8);
+    margin-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .edu-block:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+  .edu-block h3 {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    font-weight: 700;
+    margin: 0 0 var(--space-2);
+  }
+
+  .edu-detail { margin: 0 0 var(--space-1); color: var(--color-text); }
+
+  .edu-meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .approach-list,
+  .focus-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .approach-list li,
+  .focus-list li {
+    padding-left: var(--space-6);
+    border-left: 2px solid var(--color-border);
+    line-height: var(--leading-relaxed);
+  }
+
+  .approach-list strong,
+  .focus-list strong {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+  }
+
+  .about-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+</style>

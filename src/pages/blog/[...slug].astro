@@ -1,0 +1,111 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import Container from '../../components/Container.astro';
+import Prose from '../../components/Prose.astro';
+import Tag from '../../components/Tag.astro';
+import Button from '../../components/Button.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BaseLayout
+  title={`${entry.data.title} — Nicole Inman`}
+  description={entry.data.description}
+>
+  <Section>
+    <Container variant="prose">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/blog">Blog</a>
+        <span aria-hidden="true"> / </span>
+        <span>{entry.data.title}</span>
+      </nav>
+
+      <header class="post-header">
+        <time class="post-date" datetime={entry.data.pubDate.toISOString()}>
+          {formatDate(entry.data.pubDate)}
+        </time>
+        <h1 class="post-title">{entry.data.title}</h1>
+        {entry.data.tags.length > 0 && (
+          <ul class="post-tags" aria-label="Tags">
+            {entry.data.tags.map(tag => (
+              <li><Tag label={tag} /></li>
+            ))}
+          </ul>
+        )}
+      </header>
+
+      <Prose>
+        <Content />
+      </Prose>
+
+      <div class="post-footer">
+        <Button href="/blog" variant="secondary">← All Posts</Button>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .breadcrumb {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover { color: var(--color-accent); }
+
+  .post-header { margin-bottom: var(--space-12); }
+
+  .post-date {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .post-title {
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    margin: 0 0 var(--space-6);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+  }
+
+  .post-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .post-footer {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+</style>

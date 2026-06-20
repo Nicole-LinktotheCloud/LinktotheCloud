@@ -3,49 +3,120 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
 ---
 
 <BaseLayout
   title="Nicole Inman — AI Automation & Cloud Architecture"
-  description="AI automation specialist and cloud automation architect. Building governed, connected workflows that reduce manual work and improve data accuracy."
+  description="AI automation specialist and cloud automation architect. Building governed, repeatable automation systems that replace manual operations — Power Platform, Azure DevOps, and open-source stacks."
 >
+  <!-- Hero -->
   <Section>
     <Container variant="prose">
-      <div class="hero">
-        <p class="hero-label">AI automation &middot; cloud architecture &middot; fullstack</p>
-        <h1 class="hero-headline">
-          AI-powered automation.<br />Architected, not assembled.
-        </h1>
-        <p class="hero-sub">
-          Building governed, repeatable automation systems for business operations —
-          from intelligent document processing to autonomous agent pipelines.
+      <p class="hero-label">AI automation &middot; cloud architecture &middot; fullstack</p>
+      <h1 class="hero-headline">
+        AI-powered automation.<br />Architected, not assembled.
+      </h1>
+      <p class="hero-sub">
+        UW MSIM (AI &amp; Data Science focus) with a project portfolio spanning Power Platform,
+        Azure DevOps CI/CD, and open-source autonomous agents. 100% Job Success on Upwork, 5.0 client rating.
+      </p>
+      <div class="hero-actions">
+        <Button href="/projects">View Projects</Button>
+        <Button href="/contact" variant="secondary">Get in Touch</Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Proof -->
+  <Section variant="surface">
+    <Container>
+      <ul class="metrics" aria-label="Upwork track record">
+        <li><span class="metric-value">100%</span><span class="metric-label">Job Success</span></li>
+        <li><span class="metric-value">$30K+</span><span class="metric-label">earned</span></li>
+        <li><span class="metric-value">5.0</span><span class="metric-label">avg rating</span></li>
+        <li><span class="metric-value">585</span><span class="metric-label">hours delivered</span></li>
+      </ul>
+      <div class="testimonials">
+        <TestimonialCard
+          quote="Nicole provided expert, reliable Power Platform consulting and was a pleasure to work with — highly recommended."
+          author="Upwork client"
+        />
+        <TestimonialCard
+          quote="It was a pleasure to work with Nicole! Understood our needs and provided excellent documentation."
+          author="Upwork client"
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <!-- What I do -->
+  <Section>
+    <Container>
+      <h2 class="section-heading">What I build</h2>
+      <ul class="capabilities">
+        <li class="capability">
+          <h3>AI document intelligence &amp; autonomous agents</h3>
+          <p>ML-based document extraction with AI Builder. Autonomous agent pipelines with OpenClaw running on Claude. Specific about what is genuinely AI vs. rule-based orchestration.</p>
+        </li>
+        <li class="capability">
+          <h3>Cloud automation architecture</h3>
+          <p>End-to-end workflow automation on Power Platform and Azure. Custom connectors, Dataverse data modeling, API integrations — not just drag-and-drop flows.</p>
+        </li>
+        <li class="capability">
+          <h3>Fullstack development</h3>
+          <p>TypeScript, React, custom PCF components for Power Apps. Built to spec, not adapted from templates. The LineChartPCFUpdate component is open-source on GitHub.</p>
+        </li>
+        <li class="capability">
+          <h3>Source-controlled, pipeline-deployed solutions</h3>
+          <p>Every solution I ship is in source control and deployed via CI/CD — Azure DevOps for Microsoft stacks, containerized open-source for everything else. ALM is not an afterthought.</p>
+        </li>
+      </ul>
+    </Container>
+  </Section>
+
+  <!-- Featured project -->
+  <Section variant="surface">
+    <Container>
+      <h2 class="section-heading">Featured project</h2>
+      <Card
+        href="/projects/ap-automation-system"
+        title="Automated Intelligent Document Processing System"
+        summary="From Power Platform to open-source — the same AP automation system, built twice. Part A: AI Builder document intelligence, quote-to-invoice workflow, Azure DevOps CI/CD, for a construction contractor. Part B: the same workflow rebuilt on Twenty CRM + OpenClaw + Docker — contractor-owned infrastructure, no vendor lock-in."
+        tags={["Power Platform", "AI Builder", "Azure DevOps", "OpenClaw", "Twenty CRM"]}
+      />
+    </Container>
+  </Section>
+
+  <!-- CTA -->
+  <Section>
+    <Container variant="prose">
+      <div class="cta-block">
+        <p class="cta-text">
+          Have a system held together with spreadsheets and manual steps? Let's fix that.
         </p>
-        <div class="hero-actions">
-          <Button href="/projects">View Projects</Button>
-          <Button href="/about" variant="secondary">About</Button>
-        </div>
+        <Button href="/contact">Get in Touch</Button>
       </div>
     </Container>
   </Section>
 </BaseLayout>
 
 <style>
-  .hero { padding-block: var(--space-24); }
-
+  /* Hero */
   .hero-label {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-accent);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: var(--space-4);
+    margin: 0 0 var(--space-4);
   }
 
   .hero-headline {
     font-family: var(--font-mono);
     font-size: var(--text-4xl);
     font-weight: 700;
-    color: var(--color-text);
     line-height: var(--leading-tight);
     letter-spacing: -0.02em;
     margin: 0 0 var(--space-6);
@@ -55,7 +126,6 @@ import Button from '../components/Button.astro';
     font-size: var(--text-lg);
     color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
-    max-width: 560px;
     margin: 0 0 var(--space-8);
   }
 
@@ -63,5 +133,92 @@ import Button from '../components/Button.astro';
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-4);
+    padding-bottom: var(--space-16);
+  }
+
+  /* Metrics */
+  .metrics {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8) var(--space-16);
+  }
+
+  .metric-value {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  .metric-label {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+  }
+
+  .testimonials {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .testimonials { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* What I do */
+  .section-heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin: 0 0 var(--space-8);
+  }
+
+  .capabilities {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 640px) {
+    .capabilities { grid-template-columns: 1fr 1fr; }
+  }
+
+  .capability h3 {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    font-weight: 700;
+    margin: 0 0 var(--space-3);
+  }
+
+  .capability p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* CTA */
+  .cta-block {
+    padding-block: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    align-items: flex-start;
+  }
+
+  .cta-text {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    line-height: var(--leading-tight);
+    margin: 0;
   }
 </style>
