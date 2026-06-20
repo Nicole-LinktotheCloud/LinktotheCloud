@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://linktothecloud.com/sitemap-index.xml
