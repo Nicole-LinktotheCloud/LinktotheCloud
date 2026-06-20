@@ -9,13 +9,13 @@ Greenfield rebuild of Nicole Inman's portfolio + lead-generation site, replacing
 - **Astro** (latest), static output (`output: 'static'`), **TypeScript strict**.
 - **React only for interactive islands** (`@astrojs/react`). Default to `.astro` components; ship no client JS unless an island genuinely needs it.
 - **Content:** Markdown/MDX via Astro **Content Collections** (typed schemas) for case studies and blog.
-- **Package manager:** pnpm. **Node:** 24 LTS.
+- **Package manager:** pnpm. **Node:** 26 (matches Nicole's local install).
 - Styling approach is decided in Phase 2 (design system). Keep it lightweight; no heavy UI frameworks.
 
 ## Hosting & deploy (locked)
 - Host: **Hostinger** (existing), domain **linktothecloud.com**; static files served from `public_html`.
 - **Build in CI only (GitHub Actions). Never build on Hostinger** — its native Git integration copies files but does not run build steps.
-- Deploy: on push to `main`, GitHub Actions runs `pnpm install` → `astro build` → deploys `dist/` to Hostinger `public_html` via **SSH/rsync** (shared SSH port **65002**, VPS port 22). Node version comes from `.nvmrc` (24). Credentials in **GitHub Secrets**. FTPS fallback if the plan lacks SSH.
+- Deploy: on push to `main`, GitHub Actions runs `pnpm install` → `astro build` → deploys `dist/` to Hostinger `public_html` via **SSH/rsync** (shared SSH port **65002**, VPS port 22). Node version comes from `.nvmrc` (26). Credentials in **GitHub Secrets**. FTPS fallback if the plan lacks SSH.
 - Requires a Hostinger **Premium/Business** plan (SSH/Git). Verify tier and capture SSH host/user/port/path before finalizing deploy.
 
 ## Conventions
