@@ -17,6 +17,8 @@
     "@astrojs/mdx": "latest",
     "@astrojs/react": "latest",
     "@astrojs/sitemap": "latest",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
     "astro": "latest",
     "react": "latest",
     "react-dom": "latest"

@@ -1,0 +1,73 @@
+---
+/* Button — CTA element rendered as <a> when href is provided, <button> otherwise.
+   Variants: "primary" (accent fill), "secondary" (outline). */
+
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary';
+  type?: 'button' | 'submit';
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  type = 'button',
+  class: className,
+  target,
+  rel,
+} = Astro.props;
+---
+
+{href ? (
+  <a href={href} target={target} rel={rel} class:list={['btn', `btn--${variant}`, className]}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class:list={['btn', `btn--${variant}`, className]}>
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn--primary {
+    background: var(--color-accent);
+    color: #ffffff;
+    border-color: var(--color-accent);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
+
+  .btn--secondary {
+    background: transparent;
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+
+  .btn--secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+</style>

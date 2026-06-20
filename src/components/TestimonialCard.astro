@@ -1,0 +1,54 @@
+---
+/* TestimonialCard — client or peer quote with accent left border.
+   Used on About or Home page to surface social proof. */
+
+interface Props {
+  quote: string;
+  author: string;
+  role?: string;
+}
+
+const { quote, author, role } = Astro.props;
+---
+
+<blockquote class="testimonial">
+  <p class="testimonial-quote">{quote}</p>
+  <footer class="testimonial-attribution">
+    <cite>
+      <span class="testimonial-author">{author}</span>
+      {role && <span class="testimonial-role">{role}</span>}
+    </cite>
+  </footer>
+</blockquote>
+
+<style>
+  .testimonial {
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-surface);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    padding: var(--space-6) var(--space-8);
+    margin: 0;
+  }
+
+  .testimonial-quote {
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+    margin: 0 0 var(--space-4);
+  }
+
+  .testimonial-attribution {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .testimonial-author {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--color-text);
+    font-style: normal;
+  }
+
+  .testimonial-role::before { content: ' · '; }
+</style>

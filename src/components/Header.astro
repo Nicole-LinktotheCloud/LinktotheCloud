@@ -1,0 +1,87 @@
+---
+/* Header — top navigation bar. Wordmark left, desktop nav right.
+   Mobile nav (hamburger) is a React island hidden on desktop via CSS. */
+
+import MobileNav from './MobileNav.tsx';
+
+const navLinks = [
+  { href: '/',         label: 'Home'     },
+  { href: '/about',    label: 'About'    },
+  { href: '/projects', label: 'Projects' },
+  { href: '/blog',     label: 'Blog'     },
+  { href: '/contact',  label: 'Contact'  },
+];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="wordmark" aria-label="Link to the Cloud — home">
+      linktothecloud<span class="wordmark-dot">.</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <ul>
+        {navLinks.map(link => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <MobileNav links={navLinks} client:load />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+
+  .header-inner {
+    max-width: var(--max-width-wide);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .wordmark {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .wordmark-dot { color: var(--color-accent); }
+
+  /* Desktop nav: hidden on mobile, visible at ≥768px */
+  .desktop-nav { display: none; }
+
+  .desktop-nav ul {
+    display: flex;
+    list-style: none;
+    gap: var(--space-8);
+    margin: 0;
+    padding: 0;
+  }
+
+  .desktop-nav a {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .desktop-nav a:hover { color: var(--color-accent); }
+
+  @media (min-width: 768px) {
+    .desktop-nav { display: block; }
+    .header-inner { padding-inline: var(--space-8); }
+  }
+</style>

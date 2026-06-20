@@ -1,0 +1,21 @@
+---
+/* Section — semantic <section> with consistent vertical padding.
+   variant="surface" applies the light gray background for alternating sections. */
+
+interface Props {
+  variant?: 'white' | 'surface';
+  id?: string;
+}
+
+const { variant = 'white', id } = Astro.props;
+---
+
+<section id={id} class:list={['section', `section--${variant}`]}>
+  <slot />
+</section>
+
+<style>
+  .section { padding-block: var(--space-16); }
+  .section--white   { background: var(--color-bg); }
+  .section--surface { background: var(--color-surface); }
+</style>

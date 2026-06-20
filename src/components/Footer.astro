@@ -1,0 +1,65 @@
+---
+/* Footer — copyright line and social links. Keep it minimal. */
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-copy">
+      &copy; {year} Nicole Inman &middot; linktothecloud.com
+    </p>
+    <nav class="footer-social" aria-label="Social links">
+      <!-- Update hrefs in Phase 3 when real profile URLs are confirmed -->
+      <a href="https://www.linkedin.com/in/nicole-inman" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/Nicole-LinktotheCloud" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.upwork.com/freelancers/nicoleinman" target="_blank" rel="noopener noreferrer">Upwork</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+
+  .footer-inner {
+    max-width: var(--max-width-wide);
+    margin-inline: auto;
+    padding: var(--space-8) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .footer-copy {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .footer-social {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .footer-social a {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-social a:hover { color: var(--color-accent); }
+
+  @media (min-width: 768px) {
+    .footer-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-inline: var(--space-8);
+    }
+  }
+</style>
